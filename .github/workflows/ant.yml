@@ -1,0 +1,27 @@
+version: '2'
+services:
+  downloader:
+    image: "bmzhao/kissmanga-downloader:latest"
+    depends_on:
+      - selenium
+    environment:
+      - SELENIUM_HOST=selenium
+      - SELENIUM_PORT=24444
+    volumes:
+      - ./output:/output
+    entrypoint:
+      - java
+      - -jar
+      - /kissmanga-downloader.jar
+      -https://kissmanga.com/Manga/Death-Note-Colored-Edition/Vol-001-Ch-001--Boredom--Official-Color-Scans-?id=327169
+  selenium:
+    image: "elgalu/selenium:latest"
+    ports:
+      - "5900:25900"
+    environment:
+    - name: Install Dependencies
+  run: npm install 
+      - USE_SELENIUM=3
+      - TZ=US/Pacific
+      - VNC_PASSWORD=secret
+    shm_size: 1g
